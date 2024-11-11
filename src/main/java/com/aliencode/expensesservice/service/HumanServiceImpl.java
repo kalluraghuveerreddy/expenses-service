@@ -20,10 +20,10 @@ public class HumanServiceImpl implements HumanService {
     public HumanDto addHuman(HumanRequestDto humanRequestDto) {
         Optional<Human> optionalHumanObj = repository.findByEmail(humanRequestDto.getEmail());
         if (optionalHumanObj.isPresent()) {
+            return HumanMapper.mapToHumanDto(optionalHumanObj.get());
+        } else {
             Human human = repository.save(HumanMapper.mapToHuman(humanRequestDto));
             return HumanMapper.mapToHumanDto(human);
-        } else {
-            return null;
         }
     }
 
