@@ -17,8 +17,13 @@ public class HumanServiceImpl implements HumanService {
 
     @Override
     public HumanDto addHuman(HumanRequestDto humanRequestDto) {
+       Optional<Human> optionalHumnaObj=repository.findById(humanRequestDto.getId());
+        if(optionalHumnaObj.isPresent()){
         Human human = repository.save(HumanMapper.mapToHuman(humanRequestDto));
         return HumanMapper.mapToHumanDto(human);
+        }else{
+            return null;
+        }
     }
 
     @Override
