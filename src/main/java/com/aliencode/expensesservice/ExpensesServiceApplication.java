@@ -11,4 +11,7 @@ public class ExpensesServiceApplication {
 		SpringApplication.run(ExpensesServiceApplication.class, args);
 	}
 
+
+
+
 }

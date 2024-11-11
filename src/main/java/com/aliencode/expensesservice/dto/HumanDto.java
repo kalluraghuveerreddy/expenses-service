@@ -1,11 +1,21 @@
 package com.aliencode.expensesservice.dto;
 
-public class HumanDto {
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+public class HumanDto {
+    private Long id;
     private String name;
     private int age;
     private String username;
     private String email;
+    private String gender;
     private String country;
 
 }
