@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -17,8 +18,8 @@ public class HumanServiceImpl implements HumanService {
 
     @Override
     public HumanDto addHuman(HumanRequestDto humanRequestDto) {
-       Optional<Human> optionalHumnaObj=repository.findById(humanRequestDto.getId());
-        if(optionalHumnaObj.isPresent()){
+       Optional<Human> optionalHumanObj=repository.findByEmail(humanRequestDto.getEmail());
+        if(optionalHumanObj.isPresent()){
         Human human = repository.save(HumanMapper.mapToHuman(humanRequestDto));
         return HumanMapper.mapToHumanDto(human);
         }else{
