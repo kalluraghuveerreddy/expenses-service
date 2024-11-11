@@ -18,18 +18,19 @@ public class HumanServiceImpl implements HumanService {
 
     @Override
     public HumanDto addHuman(HumanRequestDto humanRequestDto) {
-       Optional<Human> optionalHumanObj=repository.findByEmail(humanRequestDto.getEmail());
-        if(optionalHumanObj.isPresent()){
-        Human human = repository.save(HumanMapper.mapToHuman(humanRequestDto));
-        return HumanMapper.mapToHumanDto(human);
-        }else{
+        Optional<Human> optionalHumanObj = repository.findByEmail(humanRequestDto.getEmail());
+        if (optionalHumanObj.isPresent()) {
+            Human human = repository.save(HumanMapper.mapToHuman(humanRequestDto));
+            return HumanMapper.mapToHumanDto(human);
+        } else {
             return null;
         }
     }
 
     @Override
     public HumanDto getHuman(Long id) {
-        return null;
+        Human human = repository.findById(id).orElseThrow(() -> new RuntimeException("Human not found"));
+        return HumanMapper.mapToHumanDto(human);
     }
 
     @Override
