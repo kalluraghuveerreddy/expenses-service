@@ -17,4 +17,5 @@ public class HumanRequestDto {
     private String gender;
     private String country;
     private String pinCode;
+    private String state;
 }
