@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -40,11 +41,17 @@ public class HumanServiceImpl implements HumanService {
 
     @Override
     public void deleteHuman(Long id) {
+        Human existedHuman = repository.findById(id).orElseThrow(() -> new RuntimeException("Human Not Found"));
+        repository.delete(existedHuman);
 
     }
 
     @Override
     public List<HumanDto> getHumans() {
-        return List.of();
+
+        return repository.findAll()
+                .stream()
+                .map(human -> HumanMapper.mapToHumanDto(human))
+                .collect(Collectors.toList());
     }
 }
