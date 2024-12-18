@@ -17,5 +17,6 @@ public class HumanRequestDto {
     private String email;
     private String gender;
     private String country;
+    private String state;
 
 }
